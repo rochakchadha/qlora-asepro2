@@ -28,7 +28,7 @@ def run_sample_inference():
     instruction_def = " Why can camels survive for long without water?"
     prompt = "### Instruction\n" + instruction_def + "### Response\n"
 
-    inputs = tokenizer(prompt, return_tensors="pt", return_attention_mask=False)
+    inputs = tokenizer(prompt, return_tensors="pt", return_attention_mask=True)
     input_ids = tokenizer(prompt, return_tensors="pt").input_ids
     input_ids = input_ids.to(model.device)
 
