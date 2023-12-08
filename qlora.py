@@ -32,7 +32,7 @@ lora_modules = ['o_proj', 'up_proj', 'down_proj', 'q_proj', 'v_proj', 'gate_proj
 
 lora_alpha = 16
 lora_dropout = 0.1
-lora_r = 8
+lora_r = 64
 
 peft_config = LoraConfig(
     lora_alpha=lora_alpha,
@@ -55,7 +55,7 @@ eval_dataset = shuffled_dataset.select(range(300))
 
 training_arguments = TrainingArguments(
     output_dir=output_dir,
-    per_device_train_batch_size=1,
+    per_device_train_batch_size=2,
     gradient_accumulation_steps=4,
     learning_rate=2e-4,
     max_grad_norm=1.0,
