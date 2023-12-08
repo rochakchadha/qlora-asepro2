@@ -1,8 +1,7 @@
 import torch
-from transformers import AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments, DataCollatorForLanguageModeling, BitsandBytesConfig
-from datasets import load_dataset, Dataset
-from trl import SFTrainer
-from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training, PeftModel
+from transformers import (AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments, DataCollatorForLanguageModeling, BitsandBytesConfig)
+from datasets import (load_dataset, Dataset)
+from peft import (LoraConfig, get_peft_model, prepare_model_for_kbit_training, PeftModel)
 
 
 model_path = "/base_model/Mistral-7B-v0.1/"
