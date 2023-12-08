@@ -67,7 +67,7 @@ training_arguments = TrainingArguments(
     weight_decay=0.02,
     fp16=True,
     optim="adamw_hf",
-    save_steps=500,
+    save_steps=50,
     do_eval = True,
     evaluation_strategy="steps",
 )
