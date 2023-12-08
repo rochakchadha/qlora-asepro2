@@ -7,8 +7,8 @@ from transformers import AutoModelForCausalLM, AutoTokenizer, DataCollatorForLan
 tokenizer = AutoTokenizer.from_pretrained("mistralai/Mistral-7B-v0.1")
 
 #load original dataset from hub and save to disk
-data = load_dataset("databricks/databricks-dolly-15k", split="train")
-# data.save_to_disk("./datasets/")
+data = load_dataset("./datasets/databricks-dolly-15k", split="train")
+data.save_to_disk("./datasets/")
 
 def format_dolly(sample):
     instruction = f"### Instruction\n{sample['instruction']}"
@@ -37,3 +37,4 @@ tok_dataset = dataset.map(lambda sample: tokenizer(sample["text"], max_length=ma
 
 #save tokenized dataset to disk
 tok_dataset.save_to_disk("./train_dataset/")
+
