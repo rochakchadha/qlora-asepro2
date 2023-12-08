@@ -1,5 +1,5 @@
 import torch
-from transformers import (AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments, DataCollatorForLanguageModeling, BitsandBytesConfig)
+from transformers import (AutoModelForCausalLM, AutoTokenizer, Trainer, TrainingArguments, DataCollatorForLanguageModeling, BitsAndBytesConfig)
 from datasets import (load_dataset, Dataset)
 from peft import (LoraConfig, get_peft_model, prepare_model_for_kbit_training, PeftModel)
 
@@ -8,7 +8,7 @@ model_path = "/base_model/Mistral-7B-v0.1/"
 training_path = "./train_dataset/"
 output_dir = "./lora_checkpoints"
 
-bnb_config = BitsandBytesConfig(
+bnb_config = BitsAndBytesConfig(
     load_in_4bit=True,
     bnb_4bit_use_double_quant=True,
     bnb_4bit_quant_type="nf4",
