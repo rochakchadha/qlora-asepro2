@@ -53,7 +53,7 @@ eval_dataset = shuffled_dataset.select(range(300))
 # define training argument
 
 training_arguments = TrainingArguments(
-    outpput_dir=output_dir,
+    output_dir=output_dir,
     per_device_train_batch_size=1,
     gradient_accumulation_steps=4,
     learning_rate=2e-4,
@@ -77,3 +77,4 @@ trainer = Trainer(
     data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
     train_dataset=dataset,
 )
+trainer.train()
