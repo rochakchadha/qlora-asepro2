@@ -57,8 +57,8 @@ eval_dataset = shuffled_dataset.select(range(300))
 
 training_arguments = TrainingArguments(
     output_dir=output_dir,
-    per_device_train_batch_size=1,
-    gradient_accumulation_steps=4,
+    per_device_train_batch_size=4,
+    gradient_accumulation_steps=1,
     learning_rate=2e-4,
     max_grad_norm=1.0,
     lr_scheduler_type="linear",
