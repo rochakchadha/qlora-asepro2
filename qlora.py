@@ -18,6 +18,7 @@ bnb_config = BitsAndBytesConfig(
 model = AutoModelForCausalLM.from_pretrained(
     model_path,
     device_map='auto',
+    use_flash_attention_2=True
     quantization_config=bnb_config
 )
 gradient_checkpointing = True
@@ -59,15 +60,14 @@ training_arguments = TrainingArguments(
     output_dir=output_dir,
     per_device_train_batch_size=6,
     gradient_accumulation_steps=2,
-    learning_rate=4e-4,
+    learning_rate=2e-4,
     lr_scheduler_type="constant",
     warmup_ratio=0.03,
     num_train_epochs=1,
     fp16=True,
-    save_steps=100,
-    logging_steps=50,
-    do_eval = False,
-    evaluation_strategy="steps",
+    save_steps=75,
+    logging_steps=20,
+    save_strategy="steps",
 )
 
 trainer = Trainer(
