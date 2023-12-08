@@ -23,6 +23,7 @@ model = AutoModelForCausalLM.from_pretrained(
 model.config.use_cache = False
 model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=True)  # https://github.com/huggingface/peft/blob/52ff0cde9f2cc64059e171c2cfd94512914c85df/src/peft/utils/other.py#L92
 tokenizer = AutoTokenizer.from_pretrained(model_path)
+tokenizer.pad_token = tokenizer.eos_token
 
 # setup LoRA
 
@@ -65,8 +66,6 @@ training_arguments = TrainingArguments(
     fp16=True,
     optim="adamw_hf",
     save_steps=500,
-    logging_steps=500,
-    log_level='info',
     do_eval = True,
     evaluation_strategy="steps",
 )
