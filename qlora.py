@@ -5,8 +5,9 @@ from trl import SFTrainer
 from peft import LoraConfig, get_peft_model, prepare_model_for_kbit_training, PeftModel
 
 
-model_path = "/data1/code/GUI/text-generation-webui/models/Llama-2-7b-chat-hf"
+model_path = "/base_model/Mistral-7B-v0.1/"
 training_path = "./train_dataset/"
+output_dir = "./lora_checkpoints"
 
 bnb_config = BitsandBytesConfig(
     load_in_4bit=True,
@@ -53,7 +54,7 @@ eval_dataset = shuffled_dataset.select(range(300))
 # define training argument
 
 training_arguments = TrainingArguments(
-    outpput_dir="./lora_checkpoints",
+    outpput_dir=output_dir,
     per_device_train_batch_size=1,
     gradient_accumulation_steps=4,
     learning_rate=2e-4,
