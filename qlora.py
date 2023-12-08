@@ -60,14 +60,12 @@ training_arguments = TrainingArguments(
     per_device_train_batch_size=6,
     gradient_accumulation_steps=2,
     learning_rate=2e-4,
-    max_grad_norm=1.0,
-    lr_scheduler_type="linear",
+    lr_scheduler_type="constant",
     warmup_ratio=0.03,
     num_train_epochs=1,
-    weight_decay=0.02,
     fp16=True,
-    optim="adamw_hf",
-    save_steps=1,
+    save_steps=200,
+    logging_steps=2,
     do_eval = True,
     evaluation_strategy="steps",
 )
@@ -77,5 +75,6 @@ trainer = Trainer(
     args=training_arguments,
     data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
     train_dataset=dataset,
+    eval_dataset=eval_dataset,
 )
 trainer.train()
