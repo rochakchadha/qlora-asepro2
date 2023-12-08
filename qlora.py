@@ -49,8 +49,8 @@ model.print_trainable_parameters()
 
 #load dataset from disk and define eval dataset
 dataset = Dataset.load_from_disk(training_path)
-shuffled_dataset = dataset.shuffle(seed=42)
-eval_dataset = shuffled_dataset.select(range(300))
+#shuffled_dataset = dataset.shuffle(seed=42)
+#eval_dataset = shuffled_dataset.select(range(300))
 
 
 # define training argument
@@ -59,14 +59,14 @@ training_arguments = TrainingArguments(
     output_dir=output_dir,
     per_device_train_batch_size=6,
     gradient_accumulation_steps=2,
-    learning_rate=2e-4,
+    learning_rate=4e-4,
     lr_scheduler_type="constant",
     warmup_ratio=0.03,
     num_train_epochs=1,
     fp16=True,
-    save_steps=200,
-    logging_steps=2,
-    do_eval = True,
+    save_steps=100,
+    logging_steps=50,
+    do_eval = False,
     evaluation_strategy="steps",
 )
 
@@ -75,6 +75,6 @@ trainer = Trainer(
     args=training_arguments,
     data_collator=DataCollatorForLanguageModeling(tokenizer, mlm=False),
     train_dataset=dataset,
-    eval_dataset=eval_dataset,
+    #eval_dataset=eval_dataset,
 )
 trainer.train()
