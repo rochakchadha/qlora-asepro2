@@ -20,7 +20,7 @@ model = AutoModelForCausalLM.from_pretrained(
     device_map='auto',
     quantization_config=bnb_config
 )
-gradient_checkpointing = False
+gradient_checkpointing = True
 model.config.use_cache = False
 model = prepare_model_for_kbit_training(model, use_gradient_checkpointing=gradient_checkpointing)  # https://github.com/huggingface/peft/blob/52ff0cde9f2cc64059e171c2cfd94512914c85df/src/peft/utils/other.py#L92
 
