@@ -8,7 +8,7 @@ merged_model_path = "./merged_model/Mistral_7b_dolly_15k"
 
 # load the model back in 32bit as we will merge the peft model to it.
 
-model = AutoModelForCausalLM.from_pretrained(model_path, device_map='auto')
+model = AutoModelForCausalLM.from_pretrained(model_path, torch_dtype=torch.float16, device_map='auto')
 
 # Call the tokenizer after the model, so that it's loaded on the GPU. 
 tokenizer = AutoTokenizer.from_pretrained(model_path)
