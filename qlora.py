@@ -18,7 +18,7 @@ bnb_config = BitsAndBytesConfig(
 model = AutoModelForCausalLM.from_pretrained(
     model_path,
     device_map='auto',
-    use_flash_attention_2=True
+    use_flash_attention_2=True,
     quantization_config=bnb_config
 )
 gradient_checkpointing = True
