@@ -3,14 +3,14 @@ from transformers import (AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfi
 from peft import ( PeftModel)
 
 model_path = "./base_model/Mistral-7B-v0.1/"
-checkpoint_path = "./lora_checkpoints/runs/.."
+checkpoint_path = "./lora_checkpoints/checkpoint-300"
 merged_model_path = "./merged_model/Mistral_7b_dolly_15k"
 
 # load the model back in 32bit as we will merge the peft model to it.
 
 model = AutoModelForCausalLM.from_pretrained(model_path, device_map='auto')
 
-# Call the tokenizer after the model, so that it's loaded on the GPU. Sometimes colab gives an error saying that some things areon CPU and some on GPU
+# Call the tokenizer after the model, so that it's loaded on the GPU. 
 tokenizer = AutoTokenizer.from_pretrained(model_path)
 tokenizer.pad_token = tokenizer.eos_token
 
