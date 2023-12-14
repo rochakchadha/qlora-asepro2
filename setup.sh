@@ -8,7 +8,7 @@ curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.s
 apt-get install git-lfs
 
 echo "Cloning the Mistral-7B-v0.1 repository..."
-cd ./qlora-asepro2/base_model
+cd base_model
 git clone https://huggingface.co/mistralai/Mistral-7B-v0.1
 
 wandb login
